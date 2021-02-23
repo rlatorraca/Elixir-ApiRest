@@ -1,8 +1,9 @@
 defmodule Rlsppay.Number do
 
   def sum_numbers_from_file(filename) do
-    file = File.read("#{filename}.csv")
-    manipula_arquivo(file)
+    "#{filename}.csv"
+    |> File.read()
+    |> manipula_arquivo()
   end
 
   defp manipula_arquivo({:ok, file}), do: file
