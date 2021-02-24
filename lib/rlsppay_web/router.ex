@@ -8,7 +8,10 @@ defmodule RlsppayWeb.Router do
   scope "/api", RlsppayWeb do
     pipe_through :api
 
+    post "/users" , UsersController, :create
     get "/:filename", WelcomeController, :index
+
+
 
   end
 

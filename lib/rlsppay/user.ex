@@ -1,4 +1,4 @@
-defmodule Rlsp.User do
+defmodule Rlsppay.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -12,9 +12,11 @@ defmodule Rlsp.User do
     field :name, :string
     field :age, :integer
     field :email, :string
-    field :password, :string, vritual: true
+    field :password, :string, virtual: true
     field :password_hash, :string
     field :nickname, :string
+
+    timestamps()
   end
 
   # faz as validacoes na insercao no DB
@@ -26,8 +28,8 @@ defmodule Rlsp.User do
       |> validate_length(:password, min: 6)
       |> validate_number(:age, greater_than_or_equal_to: 18)
       |> validate_format(:email, ~r/@/)
-      |> unique_constraint([:eamail])
-      |> unique_constraint({:nickname})
+      |> unique_constraint([:email])
+      |> unique_constraint([:nickname])
       |> put_password_hash()
   end
 
