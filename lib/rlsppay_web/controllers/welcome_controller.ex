@@ -7,16 +7,16 @@ defmodule RlsppayWeb.WelcomeController do
     #text(conn, "Welcome to RLSP-Pay API")
     filename
       |> Number.sum_numbers_from_file()
-      |> manipula_resposta(conn)
+      |> handle_response(conn)
   end
 
-  defp manipula_resposta({:ok, %{file: result}}, conn) do
+  defp handle_response({:ok, %{file: result}}, conn) do
     conn
       |> put_status(:ok)
       |> json( %{message: "There we are you numbers summed: #{result}"})
   end
 
-  defp manipula_resposta({:error, reason}, conn) do
+  defp handle_response({:error, reason}, conn) do
     conn
       |> put_status(:bad_request)
       |> json(reason)
