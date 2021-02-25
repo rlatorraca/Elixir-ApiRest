@@ -16,12 +16,12 @@ defmodule RlsppayWeb.UsersController do
       |> render("create.json", user: user)
   end
 
-  """
+
   defp handle_response({:error, result }, conn ) do
     conn
       |> put_status(:bad_request)
-      |> put_view(:RlsppayWeb.ErrorView)
-      |> render("400.json, restul: result)
+      |> put_view(RlsppayWeb.ErrorView)
+      |> render("400.json", result: result)
   end
-  """
+
 end
