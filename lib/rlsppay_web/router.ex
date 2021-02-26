@@ -11,6 +11,9 @@ defmodule RlsppayWeb.Router do
     post "/users" , UsersController, :create
     get "/:filename", WelcomeController, :index
 
+    post "/accounts/:id/deposit", AccountsController, :deposit
+    post "/accounts/:id/withdraw", AccountsController, :withdraw
+
 
 
   end
