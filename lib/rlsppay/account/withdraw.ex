@@ -1,14 +1,13 @@
-defmodule Rslppay.Accounts.Deposit do
+defmodule Rslppay.Accounts.Withdraw do
 
   alias Rlsppay.Repo
   alias Rlsppay.Account.Operation
 
   def call(params) do
    params
-    |> Operation.call(:deposit)
+    |> Operation.call(:withdraw)
     |> run_transaction()
   end
-
 
 
   defp run_transaction(multi) do
@@ -17,5 +16,4 @@ defmodule Rslppay.Accounts.Deposit do
       {:ok, %{update_balance: account}} -> {:ok, account}
     end
   end
-
 end
