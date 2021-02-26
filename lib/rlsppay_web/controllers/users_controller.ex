@@ -3,7 +3,17 @@ defmodule RlsppayWeb.UsersController do
 
   alias Rlsppay.User
 
+  action_fallback RlsppayWeb.FalbackController
 
+  def create(conn, params) do
+    with {:ok, %User{} = user} <- Rlsppay.create_user(params) do
+      conn
+      |> put_status(:created)
+      |> render("create.json", user: user)
+    end
+  end
+
+  """
   def create(conn, params) do
     params
       |> Rlsppay.create_user()
@@ -17,11 +27,8 @@ defmodule RlsppayWeb.UsersController do
   end
 
 
-  defp handle_response({:error, result }, conn ) do
-    conn
-      |> put_status(:bad_request)
-      |> put_view(RlsppayWeb.ErrorView)
-      |> render("400.json", result: result)
-  end
+  defp handle_response({:error, _result } = error,_conn ), do: error
+
+  """
 
 end
