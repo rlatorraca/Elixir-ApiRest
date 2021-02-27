@@ -1,7 +1,8 @@
 defmodule Rlsppay.Accounts.Transaction do
-
+  alias Ecto.Multi
   alias Rlsppay.Accounts.Operation
   alias Rlsppay.Repo
+  alias Rlsppay.Accounts.Transactions.Response, as: TransactionResponse
 
   def call(%{"from" => from_id, "to" => to_id, "value" => value}) do
     withdraw_params = build_params(from_id, value)
@@ -18,7 +19,9 @@ defmodule Rlsppay.Accounts.Transaction do
   defp run_transaction(multi) do
     case Repo.transaction(multi) do
       {:error, _operation, reason, _changes} -> {:error, reason}
-      {:ok, %{deposit: to_account, withdraw: from_account}} -> {:ok, %{deposit: to_account, withdraw: from_account}}
+      {:ok, %{deposit: to_account, withdraw: from_account}} ->
+        {:ok, TransactionResponse.build(from_account, to_account)
+      }
     end
   end
 end

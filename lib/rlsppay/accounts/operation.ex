@@ -1,4 +1,4 @@
-defmodule Rslppay.Accounts.Operation do
+defmodule Rlsppay.Accounts.Operation do
 
   alias Ecto.Multi
   alias Rlsppay.{Account}

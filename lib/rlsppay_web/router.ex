@@ -13,7 +13,7 @@ defmodule RlsppayWeb.Router do
 
     post "/accounts/:id/deposit", AccountsController, :deposit
     post "/accounts/:id/withdraw", AccountsController, :withdraw
-
+    post "/accounts/:id/transaction", AccountsController, :transaction
 
 
   end
