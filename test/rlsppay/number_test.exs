@@ -1,5 +1,5 @@
 defmodule Rlsppay.NumberTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias Rlsppay.Number
 
