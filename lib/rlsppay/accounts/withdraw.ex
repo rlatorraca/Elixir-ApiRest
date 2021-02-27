@@ -1,10 +1,10 @@
 defmodule Rslppay.Accounts.Withdraw do
 
   alias Rlsppay.Repo
-  alias Rlsppay.Account.Operation
+  alias Rlsppay.Accounts.Operation
 
   def call(params) do
-   params
+    params
     |> Operation.call(:withdraw)
     |> run_transaction()
   end
@@ -12,7 +12,7 @@ defmodule Rslppay.Accounts.Withdraw do
   defp run_transaction(multi) do
     case Repo.transaction(multi) do
       {:error, _operation, reason, _changes} -> {:error, reason}
-      {:ok, %{account_withdraw: account}} -> {:ok, account}
+      {:ok, %{withdraw: account}} -> {:ok, account}
     end
   end
 end

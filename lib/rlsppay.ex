@@ -10,7 +10,7 @@ defmodule Rlsppay do
   alias Rlsppay.Users.Create , as: UserCreate
   alias Rslppay.Accounts.Deposit, as: Deposit
   alias Rslppay.Accounts.Withdraw, as: Withdraw
-  alias Rslppay.Accounts.Transaction, as: Transaction
+  alias Rlsppay.Accounts.Transaction, as: Transaction
 
   defdelegate create_user(params), to: UserCreate, as: :call
 

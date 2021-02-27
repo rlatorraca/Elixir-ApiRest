@@ -1,5 +1,5 @@
 defmodule Rlsppay.Users.CreateTest do
-  use Rlsppay.DataCase
+  use Rlsppay.DataCase, async: true
 
   alias Rlsppay.User
   alias Rlsppay.Users.Create
@@ -8,7 +8,7 @@ defmodule Rlsppay.Users.CreateTest do
     test "when all params are valid, returns an user" do
       params = %{
         name: "Rodrigo",
-        password: "1234567",
+        password: "12345678",
         nickname: "rlsp",
         email: "rlsp@gmail.com",
         age: 40
@@ -35,7 +35,7 @@ defmodule Rlsppay.Users.CreateTest do
 
       expected_response = %{
         age: ["must be greater than or equal to 18"],
-        password: ["can be blank"]
+        password: ["can't be blank"]
       }
 
       assert errors_on(changeset) == expected_response

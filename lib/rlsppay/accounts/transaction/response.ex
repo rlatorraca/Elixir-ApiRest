@@ -2,6 +2,7 @@ defmodule Rlsppay.Accounts.Transactions.Response do
 
   alias Rlsppay.Account
 
+
   defstruct [:from_account, :to_account]
 
   def build(%Account{} = from_account, %Account{} = to_account) do
