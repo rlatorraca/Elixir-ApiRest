@@ -23,7 +23,7 @@ config :rlsppay, Rlsppay.Repo,
     migration_foreign_key: [type: :binary_id]
 
 config :rlsppay, :basic_auth,
-  username: "root"
+  username: "root",
   password: "root123"
 
 # Configures Elixir's Logger

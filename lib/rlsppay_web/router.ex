@@ -8,7 +8,7 @@ defmodule RlsppayWeb.Router do
   end
 
   pipeline :auth do
-    plug :basi_auth, Application.compile_env(:rlsppay, :basic_auth)
+    plug :basic_auth, Application.compile_env(:rlsppay, :basic_auth)
   end
 
   scope "/api", RlsppayWeb do
