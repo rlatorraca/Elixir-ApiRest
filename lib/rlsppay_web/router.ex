@@ -1,8 +1,14 @@
 defmodule RlsppayWeb.Router do
   use RlsppayWeb, :router
 
+  import Plug.BasicAuth
+
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :auth do
+    plug :basi_auth, Application.compile_env(:rlsppay, :basic_auth)
   end
 
   scope "/api", RlsppayWeb do
@@ -10,6 +16,17 @@ defmodule RlsppayWeb.Router do
 
     post "/users" , UsersController, :create
     get "/:filename", WelcomeController, :index
+
+    """
+    post "/accounts/:id/deposit", AccountsController, :deposit
+    post "/accounts/:id/withdraw", AccountsController, :withdraw
+    post "/accounts/:id/transaction", AccountsController, :transaction
+    """
+
+  end
+
+  scope "/api", RlsppayWeb do
+    pipe_through [:api, :auth]
 
     post "/accounts/:id/deposit", AccountsController, :deposit
     post "/accounts/:id/withdraw", AccountsController, :withdraw
